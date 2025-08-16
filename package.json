@@ -9,7 +9,7 @@
         "clean": "rm -rf dist"
     },
     "dependencies": {
-        "docgo-sdk": "file:../sdk-js"
+        "docgo-sdk": "github:doc9-oficial/docgo-sdk-js"
     },
     "devDependencies": {
         "typescript": "^5.0.0",
