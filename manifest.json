@@ -1,0 +1,147 @@
+{
+    "name": "juridico-app",
+    "version": "2.0.0",
+    "description": "Aplicação para gerenciamento de processos jurídicos",
+    "functions": {
+        "buscarProcesso": {
+            "script": "dist/buscarProcesso.js",
+            "description": "Busca um processo pelo número",
+            "parameters": [
+                {
+                    "name": "numeroProcesso",
+                    "type": "string",
+                    "required": true,
+                    "description": "Número do processo no formato CNJ"
+                },
+                {
+                    "name": "tribunal",
+                    "type": "string",
+                    "required": false,
+                    "description": "Sigla do tribunal (ex: TJSP, TJRJ)"
+                }
+            ],
+            "mcp": {
+                "name": "buscar_processo",
+                "description": "Search for a legal process by its number",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numeroProcesso": {
+                            "type": "string",
+                            "description": "Process number in CNJ format"
+                        },
+                        "tribunal": {
+                            "type": "string",
+                            "description": "Court abbreviation (e.g., TJSP, TJRJ)"
+                        }
+                    },
+                    "required": [
+                        "numeroProcesso"
+                    ]
+                }
+            }
+        },
+        "peticionar": {
+            "script": "dist/peticionar.js",
+            "description": "Protocola uma petição em um processo",
+            "parameters": [
+                {
+                    "name": "numeroProcesso",
+                    "type": "string",
+                    "required": true,
+                    "description": "Número do processo"
+                },
+                {
+                    "name": "tipoPeticao",
+                    "type": "string",
+                    "required": true,
+                    "description": "Tipo da petição"
+                },
+                {
+                    "name": "conteudo",
+                    "type": "string",
+                    "required": true,
+                    "description": "Conteúdo da petição"
+                }
+            ],
+            "mcp": {
+                "name": "protocolar_peticao",
+                "description": "File a petition in a legal process",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numeroProcesso": {
+                            "type": "string",
+                            "description": "Process number"
+                        },
+                        "tipoPeticao": {
+                            "type": "string",
+                            "description": "Type of petition"
+                        },
+                        "conteudo": {
+                            "type": "string",
+                            "description": "Petition content"
+                        }
+                    },
+                    "required": [
+                        "numeroProcesso",
+                        "tipoPeticao",
+                        "conteudo"
+                    ]
+                }
+            }
+        },
+        "extrairAdvogado": {
+            "script": "dist/extrairAdvogado.js",
+            "description": "Extrai informações do advogado de um processo",
+            "parameters": [
+                {
+                    "name": "numeroProcesso",
+                    "type": "string",
+                    "required": true,
+                    "description": "Número do processo"
+                },
+                {
+                    "name": "parte",
+                    "type": "string",
+                    "required": true,
+                    "description": "Parte do processo (autor/reu)"
+                }
+            ],
+            "mcp": {
+                "name": "extrair_advogado",
+                "description": "Extract lawyer information from a legal process",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numeroProcesso": {
+                            "type": "string",
+                            "description": "Process number"
+                        },
+                        "parte": {
+                            "type": "string",
+                            "description": "Process party (autor/reu)",
+                            "enum": [
+                                "autor",
+                                "reu"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "numeroProcesso",
+                        "parte"
+                    ]
+                }
+            }
+        }
+    },
+    "variables": {
+        "timeout": "30000",
+        "max_retries": "3",
+        "cache_ttl": "3600"
+    },
+    "mcp": {
+        "enabled": true,
+        "tools": []
+    }
+}
