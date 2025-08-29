@@ -41,95 +41,70 @@
                 }
             }
         },
-        "peticionar": {
-            "script": "dist/peticionar.js",
-            "description": "Protocola uma petição em um processo",
+        "consultarIntimacoes": {
+            "script": "dist/consultarIntimacoes.js",
+            "description": "Consulta intimações disponíveis na central de comunicações",
             "parameters": [
+                {
+                    "name": "numeroOab",
+                    "type": "string",
+                    "required": true,
+                    "description": "Número da OAB do advogado"
+                },
+                {
+                    "name": "ufOab",
+                    "type": "string",
+                    "required": false,
+                    "description": "UF da OAB (padrão: RS)"
+                },
                 {
                     "name": "numeroProcesso",
                     "type": "string",
-                    "required": true,
-                    "description": "Número do processo"
+                    "required": false,
+                    "description": "Número do processo (filtro opcional)"
                 },
                 {
-                    "name": "tipoPeticao",
+                    "name": "dataDisponibilizacaoInicio",
                     "type": "string",
-                    "required": true,
-                    "description": "Tipo da petição"
+                    "required": false,
+                    "description": "Data inicial no formato YYYY-MM-DD"
                 },
                 {
-                    "name": "conteudo",
+                    "name": "dataDisponibilizacaoFim",
                     "type": "string",
-                    "required": true,
-                    "description": "Conteúdo da petição"
+                    "required": false,
+                    "description": "Data final no formato YYYY-MM-DD"
                 }
             ],
             "mcp": {
-                "name": "protocolar_peticao",
-                "description": "File a petition in a legal process",
+                "name": "consultar_intimacoes",
+                "description": "Check available legal notifications in the communication center",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
+                        "numeroOab": {
+                            "type": "string",
+                            "description": "Lawyer's OAB number"
+                        },
+                        "ufOab": {
+                            "type": "string",
+                            "description": "OAB state abbreviation (default: RS)"
+                        },
                         "numeroProcesso": {
                             "type": "string",
-                            "description": "Process number"
+                            "description": "Process number (optional filter)"
                         },
-                        "tipoPeticao": {
+                        "dataDisponibilizacaoInicio": {
                             "type": "string",
-                            "description": "Type of petition"
+                            "description": "Start date in YYYY-MM-DD format"
                         },
-                        "conteudo": {
+                        "dataDisponibilizacaoFim": {
                             "type": "string",
-                            "description": "Petition content"
+                            "description": "End date in YYYY-MM-DD format"
                         }
                     },
                     "required": [
-                        "numeroProcesso",
-                        "tipoPeticao",
-                        "conteudo"
-                    ]
-                }
-            }
-        },
-        "extrairAdvogado": {
-            "script": "dist/extrairAdvogado.js",
-            "description": "Extrai informações do advogado de um processo",
-            "parameters": [
-                {
-                    "name": "numeroProcesso",
-                    "type": "string",
-                    "required": true,
-                    "description": "Número do processo"
-                },
-                {
-                    "name": "parte",
-                    "type": "string",
-                    "required": true,
-                    "description": "Parte do processo (autor/reu)"
-                }
-            ],
-            "mcp": {
-                "name": "extrair_advogado",
-                "description": "Extract lawyer information from a legal process",
-                "inputSchema": {
-                    "type": "object",
-                    "properties": {
-                        "numeroProcesso": {
-                            "type": "string",
-                            "description": "Process number"
-                        },
-                        "parte": {
-                            "type": "string",
-                            "description": "Process party (autor/reu)",
-                            "enum": [
-                                "autor",
-                                "reu"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "numeroProcesso",
-                        "parte"
+                        "numeroOab"
                     ]
                 }
             }
