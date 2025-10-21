@@ -4,8 +4,11 @@
     "description": "Aplicação para gerenciamento de processos jurídicos",
     "functions": {
         "buscarProcesso": {
-            "script": "dist/buscarProcesso.js",
+            "name": "Buscar Processo - Jusbr",
             "description": "Busca um processo pelo número",
+            "icon": "Scale",
+            "category": "Judicial",
+            "script": "dist/buscarProcesso.js",
             "parameters": [
                 {
                     "name": "numeroProcesso",
@@ -42,6 +45,9 @@
             }
         },
         "consultarIntimacoes": {
+            "name": "Consultar Intimações - Jusbr",
+            "icon": "Mail",
+            "category": "Judicial",
             "script": "dist/consultarIntimacoes.js",
             "description": "Consulta intimações disponíveis na central de comunicações",
             "parameters": [
